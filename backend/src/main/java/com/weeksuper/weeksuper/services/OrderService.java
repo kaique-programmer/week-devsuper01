@@ -42,5 +42,11 @@ public class OrderService {
         return new OrderDTO(order);
     }
 
-    //public List<OrderDTO> findById(){}
+    @Transactional
+    public OrderDTO setDelivered(Long id) {
+        Order order = orderRepository.getOne(id);
+        order.setStatus(OrderStatus.DELIVERED);
+        order = orderRepository.save(order);
+        return new OrderDTO(order);
+    }
 }

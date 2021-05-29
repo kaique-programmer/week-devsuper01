@@ -1,7 +1,11 @@
-function OrderLocation() {
+import StepsHeader from './StepsHeader';
+import './styles.css';
+
+
+function Order() {
   return(
-    <h1>Order Lacotion</h1>
+    <StepsHeader />
   );
 }
 
-export default OrderLocation;
+export default Order;

@@ -11,3 +11,8 @@ web-build/
 
 # macOS
 .DS_Store
+
+#Files of pattern
+.eslintrc.js
+.prettierrc
+.editorconfig

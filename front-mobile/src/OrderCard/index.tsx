@@ -1,25 +1,55 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable max-len */
+/* eslint-disable no-undef */
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { Order } from '../types';
 
-function OrderCard() {
+dayjs.locale('pt-br');
+dayjs.extend(relativeTime);
+
+type Props = {
+  order: Order;
+}
+
+function dateFromNow(date: string) {
+  return dayjs(date).fromNow();
+}
+
+export function formatPrice(price: number) {
+  const formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+  });
+
+  return formatter.format(price);
+}
+
+function OrderCard({ order }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.orderName}>
-          Pedido 1
+          Pedido
+          {order.id}
         </Text>
         <Text style={styles.orderPrice}>
-          R$ 33,33
+          R$
+          {formatPrice(order.total)}
         </Text>
       </View>
-      <Text style={styles.text}>Há 30 minutos</Text>
+      <Text style={styles.text}>{dateFromNow(order.moment)}</Text>
       <View style={styles.productsList}>
-        <Text style={styles.text}>Pizza Pepperone</Text>
-        <Text style={styles.text}>Pizza 5 queijos</Text>
+        {order.products.map((product) => (<Text key={product.id} style={styles.text}>{product.name}</Text>))}
       </View>
     </View>
   );

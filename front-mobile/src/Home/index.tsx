@@ -1,19 +1,27 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-use-before-define */
+
 import React from 'react';
 import {
   StyleSheet, Text, View, Image,
 } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import Header from '../Header';
 
 function Home() {
-  const handleOnPress = () => {
+  const navigation = useNavigation();
 
+  const handleOnPress = () => {
+    navigation.navigate('Orders');
   };
 
   return (
     <>
+      <Header />
       <View style={styles.container}>
         <Image source={require('../../assets/deliveryman.png')} />
         <Text style={styles.title}>

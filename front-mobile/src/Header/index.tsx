@@ -3,17 +3,27 @@
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-use-before-define */
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet, Text, View, Image,
 } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 function Header() {
+  const navigation = useNavigation();
+
+  const handleOnPress = () => {
+    navigation.navigate('Home');
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={require('../../assets/logo.png')} />
-      // eslint-disable-next-line no-use-before-define
-      <Text style={styles.text}>Pizza delivery</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={handleOnPress}>
+      <View style={styles.container}>
+        <Image source={require('../../assets/logo.png')} />
+        <Text style={styles.text}>Pizza delivery</Text>
+      </View>
+
+    </TouchableWithoutFeedback>
   );
 }
 

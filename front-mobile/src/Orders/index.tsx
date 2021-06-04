@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-use-before-define */
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet, ScrollView, Alert, Text,
@@ -17,13 +19,28 @@ import { Order } from '../types';
 function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
-  useEffect(() => {
+  const fetchData = () => {
+    setIsLoading(true);
     fetchOrders()
       .then((response) => setOrders(response.data))
       .catch(() => Alert.alert('Houve um erro ao buscar os pedidos!'))
       .finally(() => setIsLoading(false));
-  }, []);
+  };
+
+  useEffect(() => {
+    if (isFocused) {
+      fetchData();
+    }
+  }, [isFocused]);
+
+  const handleOnPress = (order: Order) => {
+    navigation.navigate('OrderDetails', {
+      order,
+    });
+  };
 
   return (
     <>
@@ -33,7 +50,10 @@ function Orders() {
           <Text>Bsucando pedidos</Text>
         ) : (
           orders.map((order) => (
-            <TouchableWithoutFeedback key={order.id}>
+            <TouchableWithoutFeedback
+              key={order.id}
+              onPress={() => handleOnPress(order)}
+            >
               <OrderCard order={order} />
             </TouchableWithoutFeedback>
           ))

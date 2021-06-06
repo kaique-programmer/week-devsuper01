@@ -47,7 +47,7 @@ function Orders() {
       <Header />
       <ScrollView style={styles.container}>
         {isLoading ? (
-          <Text>Bsucando pedidos</Text>
+          <Text>Buscando pedidos</Text>
         ) : (
           orders.map((order) => (
             <TouchableWithoutFeedback

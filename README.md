@@ -13,6 +13,7 @@ Estar envolvido com desenvolvimento de aplicações web.
 * [yarn] (https://yarnpkg.com/) - Gerenciamento de dependências - front-end
 * [Spring-boot] (https://spring.io/projects/spring-boot) - Usado para criar os mecanismos e funcionalidades integradas com o banco de dados
 * [Maven] (https://maven.apache.org/) - Gerenciamento de dependências - backend
+* [PostgreSQL] (https://www.postgresql.org/) - Banco de Dados
 
 ## Contribuindo
 

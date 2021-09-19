@@ -1,10 +1,10 @@
 # week-devsuper01
 
-Aplicação web e mobile desenvolvida para acelerar os processos de pedidos e entrega, de uma pizzaria.
+Aplicação web e mobile, desenvolvida para acelerar os processos de pedidos e entrega de uma pizzaria.
 
 ### Pré-requisitos
 
-Estar envolvido com desenvolvimento de aplicações web.
+Ter conhecimentos básicos de lógica de programação, banco de dados, java, html, css3 e javascript.
 
 ## Construído com
 
